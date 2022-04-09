@@ -1,0 +1,171 @@
+Started by user prince
+Connecting to https://api.github.com with no credentials, anonymous access
+Obtained Jenkinsfile from 52851120a15e8ecbea6da2614e5613312045a51a
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/pirnce_master
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/pirnce_master/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/princesarvaiya/docker.git # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/princesarvaiya/docker.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --no-tags --force --progress -- https://github.com/princesarvaiya/docker.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+Checking out Revision 52851120a15e8ecbea6da2614e5613312045a51a (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 52851120a15e8ecbea6da2614e5613312045a51a # timeout=10
+Commit message: "Create Jenkinsfile"
+ > git rev-list --no-walk 52851120a15e8ecbea6da2614e5613312045a51a # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Stage)
+[Pipeline] echo
+Deploying in staging environment
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/pirnce_master/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/princesarvaiya/docker.git # timeout=10
+Fetching upstream changes from https://github.com/princesarvaiya/docker.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/princesarvaiya/docker.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 52851120a15e8ecbea6da2614e5613312045a51a (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 52851120a15e8ecbea6da2614e5613312045a51a # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 52851120a15e8ecbea6da2614e5613312045a51a # timeout=10
+Commit message: "Create Jenkinsfile"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Testing)
+[Pipeline] echo
+Perform UNIT testing
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Building)
+[Pipeline] echo
+Build a docker image using the Dockerfile and name it webapp-color
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker build -t princesarvaiya/webapp-color .
+Sending build context to Docker daemon  127.5kB
+
+Step 1/7 : FROM python:3.6-alpine
+3.6-alpine: Pulling from library/python
+59bf1c3509f3: Pulling fs layer
+8786870f2876: Pulling fs layer
+acb0e804800e: Pulling fs layer
+52bedcb3e853: Pulling fs layer
+b064415ed3d7: Pulling fs layer
+b064415ed3d7: Waiting
+52bedcb3e853: Waiting
+8786870f2876: Verifying Checksum
+8786870f2876: Download complete
+59bf1c3509f3: Verifying Checksum
+59bf1c3509f3: Download complete
+acb0e804800e: Verifying Checksum
+acb0e804800e: Download complete
+59bf1c3509f3: Pull complete
+b064415ed3d7: Verifying Checksum
+b064415ed3d7: Download complete
+8786870f2876: Pull complete
+acb0e804800e: Pull complete
+52bedcb3e853: Verifying Checksum
+52bedcb3e853: Download complete
+52bedcb3e853: Pull complete
+b064415ed3d7: Pull complete
+Digest: sha256:579978dec4602646fe1262f02b96371779bfb0294e92c91392707fa999c0c989
+Status: Downloaded newer image for python:3.6-alpine
+ ---> 3a9e80fa4606
+Step 2/7 : RUN pip install flask
+ ---> Running in 99e0370835ba
+Collecting flask
+  Downloading Flask-2.0.3-py3-none-any.whl (95 kB)
+Collecting click>=7.1.2
+  Downloading click-8.0.4-py3-none-any.whl (97 kB)
+Collecting Jinja2>=3.0
+  Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+Collecting itsdangerous>=2.0
+  Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+Collecting Werkzeug>=2.0
+  Downloading Werkzeug-2.0.3-py3-none-any.whl (289 kB)
+Collecting importlib-metadata
+  Downloading importlib_metadata-4.8.3-py3-none-any.whl (17 kB)
+Collecting MarkupSafe>=2.0
+  Downloading MarkupSafe-2.0.1-cp36-cp36m-musllinux_1_1_x86_64.whl (29 kB)
+Collecting dataclasses
+  Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+Collecting typing-extensions>=3.6.4
+  Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+Collecting zipp>=0.5
+  Downloading zipp-3.6.0-py3-none-any.whl (5.3 kB)
+Installing collected packages: zipp, typing-extensions, MarkupSafe, importlib-metadata, dataclasses, Werkzeug, Jinja2, itsdangerous, click, flask
+Successfully installed Jinja2-3.0.3 MarkupSafe-2.0.1 Werkzeug-2.0.3 click-8.0.4 dataclasses-0.8 flask-2.0.3 importlib-metadata-4.8.3 itsdangerous-2.0.1 typing-extensions-4.1.1 zipp-3.6.0
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[0m[91mWARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+[0mRemoving intermediate container 99e0370835ba
+ ---> b08895cd2fa5
+Step 3/7 : COPY . /opt/
+ ---> 97d62647fd4b
+Step 4/7 : EXPOSE 8080
+ ---> Running in a27d0f90f557
+Removing intermediate container a27d0f90f557
+ ---> a3308a38bd41
+Step 5/7 : WORKDIR /opt
+ ---> Running in 6c74d4ea9b82
+Removing intermediate container 6c74d4ea9b82
+ ---> cc42b1ca5d7f
+Step 6/7 : ENV APP_COLOR=red
+ ---> Running in 2347a381055c
+Removing intermediate container 2347a381055c
+ ---> 9cb5a1a96964
+Step 7/7 : ENTRYPOINT ["python", "app.py"]
+ ---> Running in 98b365386506
+Removing intermediate container 98b365386506
+ ---> 0a9debb1467b
+Successfully built 0a9debb1467b
+Successfully tagged princesarvaiya/webapp-color:latest
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Running container)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker run -itd -e APP_COLOR=green -p 8282:8080 princesarvaiya/webapp-color
+8b60b7627ecd04557e428aba4fd50ee4a47fa51fafbbdb5d31e1c6f85569088b
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
